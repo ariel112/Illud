@@ -18,6 +18,24 @@ var credenciales = {
 //exponer una carpeta como publica, unicamente para archivos estaticos: html, img, css
 app.use(express.static("public"));
 
+//verifica que si hay algun puerto libre en la pc y si no utiliza el puerto 3000
+app.set('port', process.env.PORT || 3000)
+
+
+// middleware
+
+
+
+
+//route 
+
+
+
+
+
+
+
 //crear y levantar el servidor web
-app.listen(3000);
+app.listen(app.get('port'));
+
 console.log("servidor iniciado");
