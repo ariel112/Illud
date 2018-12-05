@@ -2,6 +2,28 @@
 var express = require("express");
 var app= express();
 
+
+var passport   = require('passport')
+var session    = require('express-session')
+var bodyParser = require('body-parser')
+
+var env = require('dotenv').load();
+
+//para el bodyParser
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+
+//para el passport 
+app.use(session({ secret: 'keyboard cat',resave: true, saveUninitialized:true})); // session secret
+ 
+app.use(passport.initialize());
+ 
+app.use(passport.session()); // persistent login sessions
+
+
+
+
 /*base de datos mysql*/
 var mysql = require('mysql');
 
