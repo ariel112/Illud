@@ -16,10 +16,15 @@
     "express-handlebars": "^3.0.0",
     "express-session": "^1.15.6",
     "mysql": "^2.16.0",
+    "mysql2": "^1.6.4",
     "passport": "^0.4.0",
     "passport-facebook": "^2.1.1",
     "passport-local": "^1.0.0",
     "passport-twitter": "^1.0.4",
-    "sequelize": "^4.41.2"
+    "pg": "^7.7.1",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^4.41.2",
+    "sqlite3": "^4.0.4",
+    "tedious": "^3.0.1"
   }
 }
