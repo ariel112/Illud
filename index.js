@@ -7,6 +7,42 @@ var bodyParser = require('body-parser')
 var env = require('dotenv').load();
 var exphbs     = require('express-handlebars')
 
+
+
+
+
+var session      = require('express-session');
+var MySQLStore   = require('express-mysql-session')(session);
+
+if (typeof process.env.OPENSHIFT_MYSQL_DB_HOST === undefined){
+    var options = {
+        host     : 'localhost',
+        port     : '3306',
+        user     : 'root',
+        password : null,
+        database : 'illud_db',
+        socketpath: '/var/run/mysqld/mysqld.sock'
+    }
+} else { 
+    var options = {
+        host     : process.env.OPENSHIFT_MYSQL_DB_HOST,
+        port     : process.env.OPENSHIFT_MYSQL_DB_PORT,
+        user     : process.env.OPENSHIFT_MYSQL_DB_USERNAME,
+        password : process.env.OPENSHIFT_MYSQL_DB_PASSWORD,
+        database : process.env.OPENSHIFT_APP_NAME,
+        socket   : process.env.OPENSHIFT_MYSQL_DB_SOCKET
+    }
+};    
+
+
+
+
+
+
+
+
+
+
 //para el bodyParser
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -47,18 +83,7 @@ models.sequelize.sync().then(function() {
  
 });
 
-/*
-var mysql = require('mysql');
 
-app.use(express.static("public"));
-var credenciales = {
-    user: "root",
-    password:"",
-    database:"illud_db",
-    host:"localhost",
-    port:"3306"
-};
-*/
 
 //exponer una carpeta como publica, unicamente para archivos estaticos: html, img, css
 app.use(express.static("public"));
@@ -73,6 +98,26 @@ app.set('port', process.env.PORT || 3000)
 
 
 //route 
+
+
+// Ruta para autenticarse con Facebook (enlace de login)
+app.get('/auth/facebook', passport.authenticate('facebook'));
+
+
+// Ruta de callback, a la que redirigirá tras autenticarse con Facebook.
+// En caso de fallo redirige a otra vista '/login'
+app.get('/auth/facebook/callback', passport.authenticate('facebook',
+  { successRedirect: '/dashboard', failureRedirect: '/index' }
+));
+
+
+
+
+//
+
+
+
+
 
 
 
