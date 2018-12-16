@@ -43,13 +43,14 @@
                         <img class="img-responsive img-rounded" src="publico/img/Programmers-2.jpg" alt="User picture">
                     </div>
                     <div class="user-info">
-                        <span class="user-name">Ariel
-                            <strong>Morazan</strong>
+                        <span class="user-name"> {{{user.firstname}}}
+                            <strong>{{{user.lastname}}}</strong>
+                            <p>{{{user.id}}}</p>
                         </span>
-                        <span class="user-role">Usuario</span>
+                        <span class="user-role">{{{user.email}}}</span>
                         <span class="user-status">
                             <i class="icon circle"></i>
-                            <span>Online</span>
+                            <span>{{{user.status}}}</span>
                         </span>
                     </div>
                 </div>
@@ -234,12 +235,22 @@
         </main>
         <!-- page-content" -->
     </div>
-		<script type="text/javascript" src="publico/js/sidebar.js"></script>
+	
+
+      
+
+    <script type="text/javascript" src="publico/js/sidebar.js"></script>
     <!--jquery js -->
     <script type="text/javascript" src="publico/jquery/jquery-3.3.1.min.js"></script>
 
 	<!--bootstrap js -->
 	<script type="text/javascript" src="publico/bootstrap/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" >
+
+        
+
+    </script>
 
 </body>
 </html>

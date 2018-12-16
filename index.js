@@ -8,12 +8,12 @@ var env = require('dotenv').load();
 var exphbs     = require('express-handlebars')
 
 
-
-
+/*esta la voy a utilizar para hacer las api resfull*/
+var mysql = require("mysql");
 
 var session      = require('express-session');
 var MySQLStore   = require('express-mysql-session')(session);
-
+//esta conexion la hago para utilizar el passport 
 if (typeof process.env.OPENSHIFT_MYSQL_DB_HOST === undefined){
     var options = {
         host     : 'localhost',
@@ -34,6 +34,13 @@ if (typeof process.env.OPENSHIFT_MYSQL_DB_HOST === undefined){
     }
 };    
 
+var credenciales = {
+    host:"localhost",
+    user:"root",
+    password:"",
+    port:"3306",
+    database: "illud_db"
+};
 
 
 
@@ -98,6 +105,26 @@ app.set('port', process.env.PORT || 3000)
 
 
 //route 
+
+
+//obtener las carpetas del usuario
+app.get('/carpetas/:id', function(req, res){
+    var conexion = mysql.createConnection(credenciales);
+    conexion.query(`
+        SELECT *
+            FROM tbl_carpeta 
+            WHERE tbl_usuarios_id = ? `,
+            [
+              req.params.id
+            ], function(error,data,fields){
+                res.send(data);
+                res.end();
+            }
+        );
+
+
+} );
+
 
 
 // Ruta para autenticarse con Facebook (enlace de login)
