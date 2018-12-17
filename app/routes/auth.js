@@ -18,6 +18,9 @@ module.exports = function(app,passport) {
 
     /*ruta para el index*/
     app.get('/index',authController.index);      
+   
+
+     app.get('/pen/:username',authController.pen);
 
 
     app.post('/signin', passport.authenticate('local-signin', 
@@ -27,6 +30,7 @@ module.exports = function(app,passport) {
     }
                                                     ));
 
+   
 
 
     function isLoggedIn(req, res, next) {

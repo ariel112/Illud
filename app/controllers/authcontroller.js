@@ -13,7 +13,7 @@ exports.signin = function(req, res) {
 }
 
 exports.dashboard = function(req, res) {
-    console.log(req);
+    
 
     res.render('dashboard',req);
  
@@ -22,6 +22,12 @@ exports.dashboard = function(req, res) {
 exports.index = function(req, res) {
  
     res.render('index');
+ 
+}
+
+exports.pen = function(req, res, next) {
+    console.log(req.params.username);
+    res.render('pen',req);
  
 }
 

@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="icon" type="text/css" href="publico/logo/illud-icono.png" width="120" height="120" >
-	<title>Illud</title>
-	<!--jquery js -->
+    <link rel="icon" type="text/css" href="publico/logo/illud-icono.png" width="120" height="120" >
+    <title>Illud</title>
+    <!--jquery js -->
     <script type="text/javascript" src="publico/jquery/jquery-3.3.1.min.js"></script>    
     <!--semantic js -->
-	<script type="text/javascript" src="publico/Semantic-UI-CSS-master/semantic.min.js"></script>	
-    <link rel="stylesheet" type="text/css" href="publico/Semantic-UI-CSS-master/semantic.min.css">	
-	<!--bootstrap css -->
+    <script type="text/javascript" src="publico/Semantic-UI-CSS-master/semantic.min.js"></script>   
+    <link rel="stylesheet" type="text/css" href="publico/Semantic-UI-CSS-master/semantic.min.css">  
+    <!--bootstrap css -->
     <link rel="stylesheet" type="text/css" href="publico/bootstrap/css/bootstrap.min.css">
-	
-	<!--main css -->	
-  	<link rel="stylesheet" type="text/css" href="publico/css/main.css">
-  	 <!--semantic js -->
-	<script type="text/javascript" src="publico/Semantic-UI-CSS-master/semantic.min.js"></script>	
+    
+    <!--main css -->    
+    <link rel="stylesheet" type="text/css" href="publico/css/main.css">
+     <!--semantic js -->
+    <script type="text/javascript" src="publico/Semantic-UI-CSS-master/semantic.min.js"></script>   
     <link rel="stylesheet" type="text/css" href="publico/Semantic-UI-CSS-master/semantic.min.css">
-	
+    
      <link rel="stylesheet" type="text/css" href="publico/fontawesome-free-5.3.1-web/css/all.css">
 
 </head>
 <body class="cuerpo-index">
 
-	
+    
     <div class="page-wrapper chiller-theme toggled">
         <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
            <i class="icon  bars"></i>
@@ -30,9 +30,9 @@
         <nav id="sidebar" class="sidebar-wrapper">
             <div class="sidebar-content">
                 <div class="sidebar-brand">
-                	 <a class="navbar-brand" href="#">
-				    <img class="logo" src="publico/logo/illud-texto.png" width="110" height="50" alt=""> 
-				     </a>
+                     <a class="navbar-brand" href="#">
+                    <img class="logo" src="publico/logo/illud-texto.png" width="110" height="50" alt=""> 
+                     </a>
                    
                     <div id="close-sidebar">
                         <i class="minus icon"></i>
@@ -45,7 +45,8 @@
                     <div class="user-info">
                         <span class="user-name"> {{{user.firstname}}}
                             <strong>{{{user.lastname}}}</strong>
-                            <p>{{{user.id}}}</p>
+                            
+                            <input type="text" style="display:none;" id="logeado" value="{{{user.id}}}" name="">
                         </span>
                         <span class="user-role">{{{user.email}}}</span>
                         <span class="user-status">
@@ -56,6 +57,15 @@
                 </div>
                 <!-- sidebar-header  -->
                 <div class="sidebar-search">
+
+        <button type="button"  class="btn btn-success ml-2" data-toggle="modal" data-target="#crear_pen">
+           Agregar pen
+         </button>
+              <button type="button"  class="btn btn-success ml-2" data-toggle="modal" data-target="#exampleModal">
+           Agregar carpeta
+         </button>  
+  
+        
                     <div>
                         <div class="input-group">
                             <input type="text" class="form-control search-menu" placeholder="Search...">
@@ -77,22 +87,16 @@
                             <a href="#">
                                 <i class="icon archive"></i>
                                 <span>Mis Archivos</span>
-                                <span class="badge badge-pill badge-danger icon chevron right">New </span>
+                                <span class="badge badge-pill badge-success icon chevron right">                                 
+                                </span>
+
 
                             </a>
-                            <div class="sidebar-submenu">
-                                <ul>
-                                    <li>
-                                        <a href="#">Carpeta 1
-                                            <!-- <span class="badge badge-pill badge-success">Pro</span>-->
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Carpeta 2</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Musica</a>
-                                    </li>
+                            <div  class="sidebar-submenu">
+                                <ul id="misArchivos">
+                                    
+                                 
+                                   
                                 </ul>
                             </div>
                         </li>
@@ -119,10 +123,16 @@
                             </div>
                         </li>
                         <li class="sidebar-dropdown">
+                           
                             <a href="#">
+                                
                                 <i class="icon file code"></i>
-                                <span>Snippet</span>
+                                <button id="pens">
+                                    <span>Ver Pens</span>
+                                </button>
+                                
                             </a>
+                            
                             <div class="sidebar-submenu">
                                 <ul>
                                     <li>
@@ -174,54 +184,29 @@
                 </a>
             </div>
         </nav>
+
+
+
         <!-- sidebar-wrapper  -->
         <main class="page-content">
             <div align="center" class="container-fluid">
                <img class="centrar"  src="publico/logo/illud-texto.png" width="110" height="45" alt="">
                     <p class="pcenter"><i class="home icon pcenter"></i> Home </p>
             </div>
-			
+            
 
  
 
+        
 
-        <div class="ui cards pl-5 pt-5">
-          <div class="card card-folder">
-            <div class="content">
-              <div class="header">Descripcion</div>
-              <div class="description">
-                Voy a crear una platilla para mi proyecto.
-              </div>
-            </div>
-            <div class="ui bottom attached button">
-              <i class="folder huge icon"></i>
-             Desarrollo web
-            </div>
-          </div>
-          <div class="card card-folder">
-            <div class="content">
-              <div class="header">Descripcion</div>
-              <div class="description">
-                Implementar javascript en algunos de mi proyectos.
-              </div>
-            </div>
-            <div class="ui bottom attached button">
-              <i class="folder huge icon"></i>
-             codificadores
-            </div>
-          </div>
-          <div class="card card-folder">
-            <div class="content">
-              <div class="header">Descripcion</div>
-              <div class="description">
-                Verificar la conexion de algunos componentes de mi plantilla.
-              </div>
-            </div>
-            <div class="ui bottom attached button">
-              <i class="folder huge icon"></i>
-             redes esxternas
-            </div>
-          </div>
+        <div id="bandeja" class="ui cards pl-5 pt-5">
+         
+    
+ 
+            
+
+        
+
         </div>
 
 
@@ -235,20 +220,345 @@
         </main>
         <!-- page-content" -->
     </div>
-	
+    
 
       
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Nueva Carpeta</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+         <form class="ui form" id="form-carpetas"  method="post" >
+             <input type="text" style="display:none;" id="logeado" value="{{{user.id}}}" name="id_usuario">
+              <div class="field">
+                <label><b>Nombre:</b></label>
+                <input type="text" name="nombre" placeholder="nombre de la carpeta...">
+              </div>
+              <div class="field">
+                <label><b>Descripcion:</b></label>
+                <input type="text" name="descripcion" placeholder="descripcion..">
+              </div>
+              <div class="field">
+                <label><b>Estado:</b></label>
+                <select name="estado">
+                    <option value="1">Privada</option>
+                    <option value="2">Publica</option>
+                </select>
+                
+              </div>
+           
+                <button class="ui green button"  id="btn-crear-carpetas"><b>Crear</b></button>
+           
+              
+            </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+       </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal modal para los pens-->
+<div class="modal fade" id="crear_pen" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Nueva Pen</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+         <form class="ui form" id="form-pen"  method="post" >
+             <input type="text" style="display:none;" id="logeado" value="{{{user.id}}}" name="id_usuario">
+              <div class="field">
+                <label><b>Nombre:</b></label>
+                <input type="text" name="nombre" placeholder="nombre de la carpeta...">
+              </div>
+             
+              <div class="field">
+                <label><b>Estado:</b></label>
+                <select name="estado">
+                    <option value="1">Privada</option>
+                    <option value="2">Publica</option>
+                </select>
+                
+              </div>
+           
+                <button class="ui green button"  id="btn-crear-pen"><b>Crear Pen</b></button>
+           
+              
+            </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+       </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
 
     <script type="text/javascript" src="publico/js/sidebar.js"></script>
     <!--jquery js -->
     <script type="text/javascript" src="publico/jquery/jquery-3.3.1.min.js"></script>
 
-	<!--bootstrap js -->
-	<script type="text/javascript" src="publico/bootstrap/js/bootstrap.min.js"></script>
+    <!--bootstrap js -->
+    <script type="text/javascript" src="publico/bootstrap/js/bootstrap.min.js"></script>
 
     <script type="text/javascript" >
 
+        $(document).ready(function() {
         
+         
+            cargar_carpetas();
+       
+      
+        });
+
+
+function cargar_carpetas(){
+    
+             $.ajax({
+                url:`/carpetas/${$("#logeado").val()}`,
+                method:"GET",
+                dataType:"json",
+                success: function(res){
+                    console.log(res);
+           $('#bandeja').html("");
+            for (var i=0;i<res.length;i++){               
+               
+                carpetas(res[i].nombre,res[i].descripcion);
+            }
+
+                },
+            error:function(error){
+            console.error(error);
+                }
+            });
+}
+
+
+    
+   
+
+
+/*----------------------------------- funcion que pinta las carpetas----------------------------------------*/
+    function carpetas(nombre, descripcion){
+
+    $("#bandeja").append(
+                `
+           <div class="card card-folder">
+            <div class="content">
+              <div class="header">Descripcion:</div>
+              <div class="description">
+                ${descripcion}
+              </div>
+            </div>
+            <button onclick='ver_carpeta("${nombre}")'  >
+                <div class="ui bottom attached button">            
+                  <i class="folder huge icon"></i>
+                 ${nombre}           
+                </div>
+            </button>
+          </div>
+                `
+        );
+    $("#misArchivos").append(`   
+        <li>
+            <a href="#">${nombre}</a>
+        </li>
+                                    `);
+    }
+
+
+
+    
+/*----------------------------------- funcion que crea las carpetas----------------------------------------*/    
+$("#btn-crear-carpetas").click(function(e){
+        e.preventDefault();
+     console.log($("#form-carpetas").serialize());       
+   
+   $.ajax({
+        url:"/guardar-carpeta",
+        method:"POST",
+        data:$("#form-carpetas").serialize(),
+        dataType:"json",
+        success:function(respuesta){
+            $('#bandeja').html(""); 
+            console.log(respuesta);
+           cargar_carpetas();
+        },
+        error:function(error){
+            console.error(error);
+        }
+    });
+     CierraPopup();
+
+     
+});  
+
+
+
+/*-----------------------------ruta para acceder al contenido de las carpetas----------------------------------------*/
+
+function ver_carpeta(nombre){
+      $('#bandeja').html(""); 
+    $("#bandeja").append(`
+            <div class="folder-l">
+        
+                <div class="ui bottom attached button">
+                  <i class="folder huge icon"></i>
+                ${ nombre}           
+                </div>  
+         
+            </div>
+         `);
+}
+
+
+
+
+
+
+function CierraPopup() {
+    $("#exampleModal").modal('hide');//ocultamos el modal
+    $('body').removeClass('modal-open');//eliminamos la clase del body para poder hacer scroll
+    $('.modal-backdrop').remove();//eliminamos el backdrop del modal
+} 
+
+function CierraPopup2() {
+    $("#crear_pen").modal('hide');//ocultamos el modal
+    $('body').removeClass('modal-open');//eliminamos la clase del body para poder hacer scroll
+    $('.modal-backdrop').remove();//eliminamos el backdrop del modal
+} 
+
+
+/*-----------------------------ruta para acceder al contenido de los pens----------------------------------------*/
+function pen(nombre, fecha){
+
+ $('#bandeja').append(
+    `
+    
+         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mt-4">                            
+                            <div class="ui big special cards">
+                              <div class="card card-pink">
+                                 <div class="content color-index">                                              
+                                <img class="ui avatar image" src="publico/img/Programmers-2.jpg">Selvin Morazan
+                              </div>
+                                <div class="blurring dimmable image">
+                                  <div class="ui dimmer">
+                                    <div class="content">
+                                      <div class="center">
+                                        <div class="ui inverted button">Ver proyecto</div>
+                                      </div>                                                        
+                                    </div>
+                                  </div>
+                                  <img src="publico/img/HTML.jpg">
+                                </div>
+                                <div class="content">
+                                  <a class="header color-index">${nombre}</a>
+                                  <div class="meta">
+                                    <span class="date color-index">${fecha}</span>
+                                  </div>
+                                </div>
+                                <div class="extra content color-index">
+                                   
+                                    <span class="icon-index"><i class="icon eye"></i>13 </span>
+                                    <span class="icon-index"><i class="comment icon"></i>3</span>
+                                    <span class="icon-index"><i class="heart outline like icon"></i>17</span>                                
+                                     
+                                </div>
+                              </div>                                                                          
+                            </div>
+                        </div>
+    `
+    );
+}
+
+
+/*-----------------------funcion que carga los pen*/
+function cargar_pen(){
+
+     $.ajax({
+                url:`/cargar-pens/${$("#logeado").val()}`,
+                method:"GET",
+                dataType:"json",
+                success: function(res){
+                    console.log(res);
+           $('#bandeja').html("");
+            for (var i=0;i<res.length;i++){               
+               
+                pen(res[i].nombre,res[i].created);
+            }
+
+                },
+            error:function(error){
+            console.error(error);
+                }
+            });
+
+}
+
+
+
+/*-----------------------------PETICION AJAX PARA LOS PARAMS pens----------------------------------------*/
+$('#pens').click(function() {
+    $('#bandeja').html("");
+    cargar_pen();
+  
+});
+
+
+
+/*----------------------------------- funcion que crea los pen----------------------------------------*/    
+    $("#btn-crear-pen").click(function(e){
+        e.preventDefault();
+     console.log($("#form-pen").serialize());       
+   
+   $.ajax({
+        url:"/guardar-pen",
+        method:"POST",
+        data:$("#form-pen").serialize(),
+        dataType:"json",
+        success:function(respuesta){
+             $('#bandeja').html(""); 
+            console.log(respuesta);
+           cargar_pen();
+            
+        },
+        error:function(error){
+            console.error(error);
+        }
+    });
+    CierraPopup2();
+
+     
+});  
+
+
+
 
     </script>
 

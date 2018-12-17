@@ -125,7 +125,83 @@ app.get('/carpetas/:id', function(req, res){
 
 } );
 
+//crear carpeta
 
+app.post("/guardar-carpeta",function(req,res){
+    var conexion = mysql.createConnection(credenciales);
+    conexion.query(
+       `
+       INSERT INTO 
+            tbl_carpeta ( id_estado, nombre, descripcion, created, updated, tbl_usuarios_id) 
+            VALUES 
+            (?,?,?,now(),now(),?)
+       `,
+        [
+            req.body.estado,
+            req.body.nombre,
+            req.body.descripcion,
+            req.body.id_usuario
+        ],
+        function(error, data, fields){
+            if (error){
+                res.send(error);
+                res.end();
+            }else{
+                res.send(data);
+                res.end();
+            }
+        }
+    );
+});
+
+
+
+
+/*voy a mostrar los pen: son los codigos que utilice para crear js html css*/
+app.get("/cargar-pens/:id", function(req,res){
+     var conexion = mysql.createConnection(credenciales);
+
+     conexion.query(
+        `
+        SELECT *
+            FROM tbl_proyectos
+           WHERE tbl_usuarios_id= ?;
+       `,
+       [req.params.id],
+       function(error,data,fields){
+        console.log(error);
+        res.send(data);
+        res.end();
+       }
+        );
+});
+
+/*lo utilizo para guardar los pens*/
+app.post('/guardar-pen', function(req,res){
+    var conexion = mysql.createConnection(credenciales);
+     conexion.query(
+       `
+       INSERT INTO tbl_proyectos
+        (id_estado, nombre, created, updated_at, tbl_usuarios_id) 
+        VALUES (?,?,now(),now(),?)       
+       `,
+        [
+            req.body.estado,
+            req.body.nombre,           
+            req.body.id_usuario
+        ],
+        function(error, data, fields){
+            if (error){
+                res.send(error);
+                res.end();
+            }else{
+                res.send(data);
+                res.end();
+            }
+        }
+    );
+
+});
 
 // Ruta para autenticarse con Facebook (enlace de login)
 app.get('/auth/facebook', passport.authenticate('facebook'));
