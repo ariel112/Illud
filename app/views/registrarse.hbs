@@ -30,7 +30,7 @@
                       <span class="navbar-toggler-icon"></span>
                     </button>
                     
-                      <div  class="index-buscador">
+                      <div style="visibility: hidden"   class="index-buscador">
                          <!--Buscador de codigos -->
                           <div class="ui fluid small icon input ">
                              <input type="text" placeholder="Search...">
@@ -46,8 +46,8 @@
                       </li>       
                     </ul>
                        
-                   <button class="ui positive basic button mr-2">Iniciar sesión </button>
-                   <button class="ui positive basic button pr-2" data-toggle="modal" data-target="#login-index" data-whatever="@mdo">  Registrate</button>
+                   <button class="ui positive basic button mr-2" data-toggle="modal" data-target="#login-index" data-whatever="@mdo">Iniciar sesión </button>
+                   <button class="ui positive basic button pr-2" ><a href="/signup" style="color: #21ba45;">  Registrate</a></button>
                     <!--El desplegable para seleccionar un estilo de la pantalla-->
                     
                   </div>
@@ -82,13 +82,7 @@
                                           <i class="user icon"></i>
                                         </div>
                                       </div>
-                                      <div class=" expandir field">
-                                        <label>Segundo nombre:</label>
-                                        <div class="ui left icon input">
-                                          <input type="text" name="lastname" placeholder="Nick...">
-                                          <i class="qq icon"></i>
-                                        </div>
-                                      </div>
+                                                                           
                                       <div class=" expandir field">
                                         <label>Email:</label>
                                         <div class="ui left icon input">
@@ -136,7 +130,42 @@
 
 
 
-
+<!--Ventana modal para logearse -->
+    <div class="modal fade" id="login-index" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+          <div  class="modal-header">
+            <div class="container"> 
+             <h5 class="modal-title" id="exampleModalLabel"><img class="iniciar-imagen" src="publico/logo/illud-texto-amarillo.png" width="120px" height="50px"></h5>
+           
+            </div>
+            
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div  class="modal-body">
+           
+            <form class="ui form" id="signin" name="signin" method="post" action="signin">
+              <div class="field">
+                <label><b>Usuario:</b></label>
+                <input type="email" name="email" placeholder="usuario...">
+              </div>
+              <div class="field">
+                <label><b>Contraseña:</b></label>
+                <input type="password" name="password" placeholder="password..">
+              </div>
+           
+                <button class="ui green button inverted fluid" type="submit"><b>iniciar</b></button>
+           
+              
+            </form>
+          </div> 
+          <div class="modal-footer">              
+          </div>
+        </div>
+      </div>
+     </div>
 
 
 

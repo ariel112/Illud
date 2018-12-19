@@ -135,7 +135,7 @@ app.post("/guardar-carpeta",function(req,res){
     conexion.query(
        `
        INSERT INTO 
-            tbl_carpeta ( id_estado, nombre, descripcion, created, updated, tbl_usuarios_id) 
+            tbl_carpeta ( id_estado, nombre, descripcion, created, updated, id_usuario) 
             VALUES 
             (?,?,?,now(),now(),?)
        `,
@@ -373,7 +373,7 @@ app.get('/proyectos_home', function(req,res){
             FROM tbl_proyectos A
             INNER JOIN tbl_usuarios B
             ON(A.tbl_usuarios_id=B.id)
-            WHERE A.id_estado=1;
+            WHERE A.id_estado=2;
         `,
         [ ],
         function(error,data,fields){
@@ -386,6 +386,65 @@ app.get('/proyectos_home', function(req,res){
             }
         }
         );
+});
+
+
+
+app.get('/cargar_usuario/:id', function(req,res){
+    var conexion = mysql.createConnection(credenciales);
+    conexion.query(`
+        SELECT A.*
+            FROM tbl_usuarios A
+            WHERE A.id=? ;`,
+            [req.params.id],
+            function(error,data,fields){
+                if(error){
+                    res.send(data);
+                    res.end();
+                }else{
+                    res.send(data);
+                    res.end();
+                }
+            }
+            );
+});
+
+
+/*guardo codigo de cada pen*/
+app.put('/editar-usuario/:id', function(req,res){
+    var conexion = mysql.createConnection(credenciales);
+     conexion.query(
+       `
+       UPDATE tbl_usuarios SET 
+            firstname=?,
+            ubicacion=?,
+            descripcion=?,
+            pagina1=?,
+            pagina2=?,
+            pagina3=? 
+            WHERE 1     
+       `,
+        [   
+
+            req.body.firstname,
+            req.body.ubicacion,           
+            req.body.descripcion,
+            req.body.pagina1,
+            req.body.pagina2,
+            req.body.pagina3,
+            req.params.id
+        ],
+        function(error, data, fields){
+            if (error){
+                res.send(error);
+                res.end();
+            }else{
+                res.send(data);
+                res.end();
+            }
+        }
+    );
+
 });
 
 

@@ -1,35 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="icon" type="text/css" href="publico/logo/illud-icono.png" width="120" height="120" >
-    <title>Illud</title>
-    <!--jquery js -->
+	<link rel="icon" type="text/css" href="publico/logo/illud-icono.png" width="120" height="120" >
+	<title>Illud</title>
+	<!--jquery js -->
     <script type="text/javascript" src="publico/jquery/jquery-3.3.1.min.js"></script>    
     <!--semantic js -->
-    <script type="text/javascript" src="publico/Semantic-UI-CSS-master/semantic.min.js"></script>   
-    <link rel="stylesheet" type="text/css" href="publico/Semantic-UI-CSS-master/semantic.min.css">  
-    <!--bootstrap css -->
+	<script type="text/javascript" src="publico/Semantic-UI-CSS-master/semantic.min.js"></script>	
+    <link rel="stylesheet" type="text/css" href="publico/Semantic-UI-CSS-master/semantic.min.css">	
+	<!--bootstrap css -->
     <link rel="stylesheet" type="text/css" href="publico/bootstrap/css/bootstrap.min.css">
-    
-    <!--main css -->    
-    <link rel="stylesheet" type="text/css" href="publico/css/main.css">
-     <!--semantic js -->
-    <script type="text/javascript" src="publico/Semantic-UI-CSS-master/semantic.min.js"></script>   
+	
+	<!--main css -->	
+  	<link rel="stylesheet" type="text/css" href="publico/css/main.css">
+  	 <!--semantic js -->
+	<script type="text/javascript" src="publico/Semantic-UI-CSS-master/semantic.min.js"></script>	
     <link rel="stylesheet" type="text/css" href="publico/Semantic-UI-CSS-master/semantic.min.css">
-    
+	
      <link rel="stylesheet" type="text/css" href="publico/fontawesome-free-5.3.1-web/css/all.css">
 
 </head>
 <body class="cuerpo-index">
 
-    
+	
     <div class="page-wrapper chiller-theme toggled">
         <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
            <i class="icon  bars"></i>
         </a>
 
 
-        <nav id="sidebar" class="sidebar-wrapper">
+         <nav id="sidebar" class="sidebar-wrapper">
             <div class="sidebar-content">
                 <div class="sidebar-brand">
                      <a class="navbar-brand" href="#">
@@ -47,7 +47,7 @@
                         </a>   
                     </div>
                     <div class="user-info">
-                        <span class="user-name"> {{{user.firstname}}}
+                        <span class="user-name">{{{user.firstname}}}
                             <strong>{{{user.lastname}}}</strong>
                             
                             <input type="text" style="display:none;" id="logeado" value="{{{user.id}}}" name="">
@@ -127,7 +127,7 @@
                                 
                             </a>
                             
-                          
+                         
                         </li>
                         
                     
@@ -172,27 +172,81 @@
 
 
 
+
+
         <!-- sidebar-wrapper  -->
         <main class="page-content">
             <div align="center" class="container-fluid">
                <img class="centrar"  src="publico/logo/illud-texto.png" width="110" height="45" alt="">
-                    <p class="pcenter"><i class="home icon pcenter"></i> Home </p>
+                    <p class="pcenter"><i class="user icon pcenter"></i> Editar perfil </p>
             </div>
-            
+			
+            <div class="container pt-5 ancho-edit">
+              <form class="ui form" id="form-edit"  method="post" >    
+                    <div class="edit-nombre pl-5 pt-3">
+                        <h2>Nombre y Ubicación</h2>
+                        <hr>
+                        <div class="ui form ">
+                          <div class="inline fields">
+                            <div class="eight wide field">
+                              <label class="edit-colors">Nombre:</label>
+                              <input type="text" name="firstname" id="firstname" placeholder="Nombre...">
+                            </div>                
+                          </div>
+                          <div class="inline fields">
+                              <div class="eight wide field">
+                                  <label class="edit-colors">Ubicación:</label>
+                                  <input type="text" name="ubicacion" id="ubicacion" placeholder="Ubicación...">
+                              </div>
+                          </div>
+                        </div>
+                    </div>
 
- 
 
-        
+                    <div class="edit-descripcion mt-3 pl-5 pt-3"> 
+                        <h2>Descripcion</h2>
+                        <hr>
+                       <div class="ui form "> 
+                        <div class="field">
+                                <label class="edit-colors">Acerca de ti:</label>
+                                <textarea rows="2" name="descripcion" id="descripcion"></textarea>
+                        </div>
+                       </div> 
+                    </div>
 
-        <div id="bandeja" class="ui cards pl-5 pt-5">
-         
-    
- 
-            
+                    <div class="edit-paginas-web mt-3 pl-5 pt-3">
+                        <h2>Paginas Web</h2>
+                        <hr>
+                        <div class="ui form">
+                          <div class="inline fields">
+                            <div class="eight wide field">
+                              <label class="edit-colors">Pagina Web #1: </label>
+                              <input type="text" name="pagina1" id="pagina1" placeholder="url...">
+                            </div>                
+                          </div>
+                          <div class="inline fields">
+                              <div class="eight wide field">
+                                  <label class="edit-colors">Pagina Web #2:</label>
+                                  <input type="text" name="pagina2" id="pagina2" placeholder="url...">
+                              </div>
+                          </div>
+                          <div class="inline fields">
+                              <div class="eight wide field">
+                                  <label class="edit-colors">Pagina Web #3:</label>
+                                  <input type="text" name="pagina3" id="pagina3" placeholder="url...">
+                              </div>
+                          </div>
+                        </div>
 
-        
+                    </div>
+                    <div class="guardar-edit mt-3 pl-5 pt-2">
+                        <button id="btn-edit" class="ui positive basic button mr-2">Guardar informacion </button>
+                    </div>
 
-        </div>
+           </form>
+            </div>
+                
+
 
 
 
@@ -205,9 +259,11 @@
         </main>
         <!-- page-content" -->
     </div>
-    
 
-      
+
+
+
+
 
 
 
@@ -345,21 +401,28 @@
 
 
 
-    <script type="text/javascript" src="publico/js/sidebar.js"></script>
+
+
+
+
+
+
+
+		<script type="text/javascript" src="publico/js/sidebar.js"></script>
     <!--jquery js -->
     <script type="text/javascript" src="publico/jquery/jquery-3.3.1.min.js"></script>
 
-    <!--bootstrap js -->
-    <script type="text/javascript" src="publico/bootstrap/js/bootstrap.min.js"></script>
-
-    <script type="text/javascript" >
+	<!--bootstrap js -->
+	<script type="text/javascript" src="publico/bootstrap/js/bootstrap.min.js"></script>
+    
+     <script type="text/javascript" >
 
         $(document).ready(function() {
         
          
             cargar_carpetas();
             compartido();
-            
+            cargar_edit();
             $('#compartir').on('show.bs.modal', function(e) {    
              var id = $(e.relatedTarget).data().id;
               $(e.currentTarget).find('#lista').val(id);
@@ -441,7 +504,7 @@ $("#btn-crear-comparte").click(function(e){
         dataType:"json",
         success:function(respuesta){
            $('#bandeja_compartido').html(""); 
-            console.log(respuesta);
+           // console.log(respuesta);
            compartido();
         },
         error:function(error){
@@ -455,6 +518,76 @@ $("#btn-crear-comparte").click(function(e){
 
 
 
+/*cargo la informacion en el edit*/
+function cargar_edit(){
+
+    $.ajax({
+        url: `/cargar_usuario/${$("#logeado").val()}`,
+        metho:"GET",
+        dataType: "json",
+        success: function(res){
+            console.log(res);
+        for (var i=0;i<res.length;i++){               
+               
+                 pintar_edit(res[i].id, res[i].firstname, res[i].ubicacion,res[i].descripcion, res[i].pagina1, res[i].pagina2, res[i].pagina3);
+              
+            }
+           
+        },
+        error:function(error){
+            console.error(error);
+        } 
+    });
+}
+
+/*-------------------------------voy a llenar los elementos del formulario edit--------------------------------------------------*/
+function pintar_edit(id,nombre,ubicacion,descripcion,pagina1,pagina2,pagina3){
+      
+    
+
+     $('#firstname').val(nombre);
+     $('#ubicacion').val(ubicacion);
+     $('#descripcion').val(descripcion);
+     $('#pagina1').val(pagina1);
+     $('#pagina2').val(pagina2);
+     $('#pagina3').val(pagina3);
+
+
+
+}
+
+
+
+/*--------------------------------------btn para guardar la informacion----------------------------------------------------------*/
+$('#btn-edit').click(function(e){
+    e.preventDefault();
+    console.log($('#form-edit').serialize());
+  $.ajax({
+                    url:`/editar-usuario/${$("#logeado").val()}`,
+                    data: $('#form-edit').serialize(),
+                    method:"PUT",
+                    dataType:"json",
+                    success: function(res){
+                        console.log(res);
+                       
+
+                    },
+                error:function(error){
+                console.error(error);
+                    }
+            });
+
+
+
+});
+
+
+
+
+
+
+
+
 
 function cargar_carpetas(){
     
@@ -463,7 +596,7 @@ function cargar_carpetas(){
                 method:"GET",
                 dataType:"json",
                 success: function(res){
-                    console.log(res);
+                  //  console.log(res);
                    $('#bandeja').html("");
                     for (var i=0;i<res.length;i++){               
                        
@@ -525,7 +658,7 @@ $("#btn-crear-carpetas").click(function(e){
         dataType:"json",
         success:function(respuesta){
             $('#bandeja').html(""); 
-            console.log(respuesta);
+          //  console.log(respuesta);
            cargar_carpetas();
         },
         error:function(error){
@@ -609,7 +742,7 @@ function pen(nombre, fecha,id){
                                   
                                 </div>
                                 <div class="content">
-                                  <a href="/pen/${id}" class="header color-index">${nombre}</a>
+                                  <a href="/pen/${id}" class="header color-index">${nombre} ${id}</a>
                                   <div class="meta">
                                     <span class="date color-index">${fecha}</span>
                                   </div>

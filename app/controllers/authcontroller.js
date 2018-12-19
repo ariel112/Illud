@@ -32,6 +32,11 @@ exports.pen = function(req, res, next) {
 }
 
 
+exports.edit = function (req,res,next){
+	res.render('edit_perfil',req);
+}
+
+
 exports.logout = function(req, res) {
  
     req.session.destroy(function(err) {

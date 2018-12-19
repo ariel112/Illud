@@ -23,9 +23,10 @@ module.exports = function(app,passport) {
     /*ruta para el index*/
     app.get('/index',authController.index);      
    
-
+     /*Ruta para controlar el pen*/    
      app.get('/pen/:id',isLoggedIn,authController.pen);
-
+     
+     app.get('/edit/:id',isLoggedIn,authController.edit); 
 
     app.post('/signin', passport.authenticate('local-signin', 
     { 
