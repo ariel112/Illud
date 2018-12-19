@@ -363,6 +363,31 @@ app.post('/guardar-comparte', function(req,res){
 
 });
 
+/*cargar proyectos en el baner principal*/
+
+app.get('/proyectos_home', function(req,res){
+    var conexion = mysql.createConnection(credenciales);
+    conexion.query(
+        `
+        SELECT B.email, A.nombre as nombre, A.created, A.id
+            FROM tbl_proyectos A
+            INNER JOIN tbl_usuarios B
+            ON(A.tbl_usuarios_id=B.id)
+            WHERE A.id_estado=1;
+        `,
+        [ ],
+        function(error,data,fields){
+            if(error){
+                res.send(data);
+                res.end();
+            }else{
+                res.send(data);
+                res.end();
+            }
+        }
+        );
+});
+
 
 
 
