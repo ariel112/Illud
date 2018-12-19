@@ -2,20 +2,20 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<link rel="icon" type="text/css" href="publico/logo/illud-icono.png" width="120" height="120" >
+	<link rel="icon" type="text/css" href="./publico/logo/illud-icono.png" width="120" height="120" >
 	<title>Illud Pen</title>
 
     <!--jquery js -->
-    <script type="text/javascript" src="publico/jquery/jquery-3.3.1.min.js"></script>    
+    <script type="text/javascript" src="./publico/jquery/jquery-3.3.1.min.js"></script>    
     <!--semantic js -->
-	<script type="text/javascript" src="publico/Semantic-UI-CSS-master/semantic.min.js"></script>	
-    <link rel="stylesheet" type="text/css" href="publico/Semantic-UI-CSS-master/semantic.min.css">	
+	<script type="text/javascript" src="./publico/Semantic-UI-CSS-master/semantic.min.js"></script>	
+    <link rel="stylesheet" type="text/css" href="./publico/Semantic-UI-CSS-master/semantic.min.css">	
 	<!--bootstrap css -->
-    <link rel="stylesheet" type="text/css" href="publico/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./publico/bootstrap/css/bootstrap.min.css">
 	<!--bootstrap js -->
-	<script type="text/javascript" src="publico/bootstrap/js/bootstrap.min.js"></script>	
+	<script type="text/javascript" src="./publico/bootstrap/js/bootstrap.min.js"></script>	
 	<!--main css -->	
-  	<link rel="stylesheet" type="text/css" href="publico/css/main.css">
+  	<link rel="stylesheet" type="text/css" href="./publico/css/main.css">
 
   	<!--link para usar codemirror -->
 	<script type="text/javascript" src="editores/codemirror-5.40.2/lib/codemirror.js"></script>
@@ -39,28 +39,28 @@
 	<script type="text/javascript" src="editores/codemirror-5.40.2/addon/edit/closetag.js"></script>
     
     <!--Vamos a utlizar main.js propio -->
-	<script type="text/javascript" src="publico/js/main.js"></script>
-	<link rel="stylesheet" type="text/css" href="publico/css/pen.css">
+	<script type="text/javascript" src="./publico/js/main.js"></script>
+	<link rel="stylesheet" type="text/css" href="./publico/css/pen.css">
 
 	<!--Jquery  -->
-	<link rel="stylesheet" type="text/css" href="publico/jquery-ui-1.12.1/jquery-ui.min.css">
-	<link rel="stylesheet" type="text/css" href="publico/jquery-ui-1.12.1/jquery-ui.structure.min.css">
-	<link rel="stylesheet" type="text/css" href="publico/jquery-ui-1.12.1/jquery-ui.theme.min.css">
-	<script type="text/javascript" src="publico/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="./publico/jquery-ui-1.12.1/jquery-ui.min.css">
+	<link rel="stylesheet" type="text/css" href="./publico/jquery-ui-1.12.1/jquery-ui.structure.min.css">
+	<link rel="stylesheet" type="text/css" href="./publico/jquery-ui-1.12.1/jquery-ui.theme.min.css">
+	<script type="text/javascript" src="./publico/jquery-ui-1.12.1/jquery-ui.min.js"></script>
     
     <!--importo el jquery ui para las dimensiones -->
-    <link rel="stylesheet" type="text/css" href="publico/layout-master/source/stable/layout-default.css">
+    <link rel="stylesheet" type="text/css" href="./publico/layout-master/source/stable/layout-default.css">
 
-    <script type="text/javascript" src="publico/layout-master/jquery-2.2.4.min.js"></script>
-	<script type="text/javascript" src="publico/layout-master/source/jquery/jquery-ui-1.11.0.js"></script>
-	<script type="text/javascript" src="publico/layout-master/source/stable/jquery.layout_and_plugins.js"></script>
+    <script type="text/javascript" src="./publico/layout-master/jquery-2.2.4.min.js"></script>
+	<script type="text/javascript" src="./publico/layout-master/source/jquery/jquery-ui-1.11.0.js"></script>
+	<script type="text/javascript" src="./publico/layout-master/source/stable/jquery.layout_and_plugins.js"></script>
     <!--semantic js -->
-	<script type="text/javascript" src="publico/Semantic-UI-CSS-master/semantic.min.js"></script>	
-    <link rel="stylesheet" type="text/css" href="publico/Semantic-UI-CSS-master/semantic.min.css">
+	<script type="text/javascript" src="./publico/Semantic-UI-CSS-master/semantic.min.js"></script>	
+    <link rel="stylesheet" type="text/css" href="./publico/Semantic-UI-CSS-master/semantic.min.css">
 
     <!--Librerias que voy a utlizar para mi chat-->
-    <link rel="stylesheet" type="text/css" href="publico/css/icon-material/css/material-design-iconic-font.min.css">
-    <link rel="stylesheet" type="text/css" href="publico/css/style-chat.css">
+    <link rel="stylesheet" type="text/css" href="./publico/css/icon-material/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" type="text/css" href="./publico/css/style-chat.css">
 </head>
 
 
@@ -72,9 +72,9 @@
 				    <div class="chat_header">
 				      <div class="chat_option">
 				      <div class="header_img">
-				        <img src="publico/img/teclado.jpg"/>
+				        <img src="./publico/img/teclado.jpg"/>
 				        </div>
-				        <span id="chat_head">Users_name</span> <br> <span class="agent">Alias</span> <span class="online">(Online)</span>
+				        <span id="chat_head"></span> <br> <span class="agent">Alias</span> <span class="online">(Online)</span>
 				       <span id="chat_fullscreen_loader" class="chat_fullscreen_loader"><i class="fullscreen zmdi zmdi-window-maximize"></i></span>
 				      </div>
 				    </div>
@@ -82,14 +82,14 @@
 				    <div id="chat_converse" class="chat_conversion chat_converse">            
 				      <span class="chat_msg_item chat_msg_item_admin">
 				            <div class="chat_avatar">
-				               <img src="publico/img/teclado.jpg"/>
+				               <img src="./publico/img/teclado.jpg"/>
 				            </div>Empieza el chat</span>
 				      <span class="chat_msg_item chat_msg_item_user">
 				            Hello!</span>
 				            <span class="status">20m ago</span>
 				      <span class="chat_msg_item chat_msg_item_admin">
 				            <div class="chat_avatar">
-				               <img src="publico/img/teclado.jpg"/>
+				               <img src="./publico/img/teclado.jpg"/>
 				            </div>Hey! Would you like to talk sales, support, or anyone?</span>
 				      <span class="chat_msg_item chat_msg_item_user">
 				            Finaliza el chat</span>
@@ -109,19 +109,20 @@
 		        <!--Menu de navegacion del pen o tablero de codigo -->
 				<nav class=" navbar navbar-dark bg-dark navbar-expand-lg pt-2 pb-2">
 				  <a class="navbar-brand" href="#">
-				    <img src="publico/logo/illud-texto.png" width="100" height="30" alt=""> <p style="color: white; font-size: 11px; margin: 0px;">Codigo Ariel</p>
+				    <img src="./publico/logo/illud-texto.png" width="100" height="30" alt=""> <p style="color: white; font-size: 11px; margin: 0px;">Codigo Ariel  </p>
 				  </a>
-				  <form class="form-inline">
+				  <input type="text" style="display:none;" name="" id="pen" value="{{id}}">
+				
 				   <!--  <button class="ui inverted primary button"><i class="icon play"></i>Run</button> -->
 				    <button id="run" class="ui primary basic button"><i class="icon play"></i>Run</button>   
-				  </form>			 
+					 
 				 
 				  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 				    <ul class="navbar-nav mr-auto">
 				      <li class="nav-item active">		       
 				      </li>	      
 				    </ul>
-				   <button class="ui positive basic button"> <i class="icon cloud"></i> Guardar</button>
+				   <button class="ui positive basic button" id="save"> <i class="icon cloud"></i> Guardar</button>
 				   <button class="ui positive basic button" data-toggle="modal" data-target="#opciones" data-whatever="@mdo"> <i class="icon cogs"></i> Opciones</button>
 				    <!--El desplegable para seleccionar un estilo de la pantalla-->
 				    <form class="form-inline my-2 my-lg-0">						
@@ -182,7 +183,7 @@
 			      <!--Area de la pagina a pintar -->
 			      <div id="test" class="ui-layout-south" style="padding:15px; ">
 			      <div class="resizable" >		  
-				    <iframe class="elemento resizable" id="contenido" height="100%" width="1200px" frameborder="0" >		    	
+				    <iframe class="elemento resizable" id="contenido" height="1500px;" width="100%" frameborder="0" >		    	
 				    </iframe>
 				  </div>  
 			      </div>
@@ -276,7 +277,7 @@
 		         	<div class="ui link cards">
 					  <div class="card">
 					    <div class="image">
-					      <img src="publico/img/Programmers-2.jpg">
+					      <img src="./publico/img/Programmers-2.jpg">
 					    </div>
 					    <div class="content">
 					      <div class="header">Selvin Ariel Morazan Colindres</div>
@@ -305,7 +306,7 @@
 		         	<div class="ui comments">
 					  <div class="comment">
 					    <a class="avatar">
-					      <img src="publico/img/disfruta.jpg">
+					      <img src="./publico/img/disfruta.jpg">
 					    </a>
 					    <div class="content">
 					      <a class="author"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Joe Henderson</font></font></a>
@@ -323,7 +324,7 @@
 					  </div>
 					  <div class="comment">
 					    <a class="avatar">
-					      <img src="publico/img/cafe.jpg">
+					      <img src="./publico/img/cafe.jpg">
 					    </a>
 					    <div class="content">
 					      <a class="author"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Christian Rocha</font></font></a>
@@ -407,6 +408,11 @@
 		<!-- finaliza la Ventana modal para editar el nombre del proyecto que estoy trabajando -->	
 
 <!--Este es el script para el efecto de mi chat -->
-<script type="text/javascript" src="publico/js/index-chat.js"></script>
+<script type="text/javascript" src="./publico/js/index-chat.js"></script>
+
+
+
+
+
 </body>
 </html>

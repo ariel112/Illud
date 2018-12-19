@@ -26,8 +26,8 @@ exports.index = function(req, res) {
 }
 
 exports.pen = function(req, res, next) {
-    console.log(req.params.username);
-    res.render('pen',req);
+    console.log(req.params.id);
+    res.render('pen',{id:req.params.id});
  
 }
 

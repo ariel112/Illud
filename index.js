@@ -49,7 +49,6 @@ var credenciales = {
 
 
 
-
 //para el bodyParser
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -106,6 +105,10 @@ app.set('port', process.env.PORT || 3000)
 
 //route 
 
+app.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/');
+});
 
 //obtener las carpetas del usuario
 app.get('/carpetas/:id', function(req, res){
@@ -113,7 +116,7 @@ app.get('/carpetas/:id', function(req, res){
     conexion.query(`
         SELECT *
             FROM tbl_carpeta 
-            WHERE tbl_usuarios_id = ? `,
+            WHERE id_usuario = ? `,
             [
               req.params.id
             ], function(error,data,fields){
@@ -163,9 +166,17 @@ app.get("/cargar-pens/:id", function(req,res){
 
      conexion.query(
         `
-        SELECT *
-            FROM tbl_proyectos
-           WHERE tbl_usuarios_id= ?;
+        SELECT 
+        id, id_estado,
+        nombre,
+        string_html,
+        string_css,
+        string_js, 
+        DATE_FORMAT(created, '%Y-%d-%m') as created,
+        updated_at,
+        tbl_usuarios_id
+                    FROM tbl_proyectos
+                   WHERE tbl_usuarios_id = ?;
        `,
        [req.params.id],
        function(error,data,fields){
@@ -203,6 +214,62 @@ app.post('/guardar-pen', function(req,res){
 
 });
 
+
+/*guardo codigo de cada pen*/
+app.put('/editar-pen/:id', function(req,res){
+    var conexion = mysql.createConnection(credenciales);
+     conexion.query(
+       `
+       UPDATE tbl_proyectos SET           
+            string_html=?,
+            string_css=?,
+            string_js=?
+            WHERE id=?       
+       `,
+        [   
+
+            req.body.html,
+            req.body.css,           
+            req.body.js,
+            req.params.id
+        ],
+        function(error, data, fields){
+            if (error){
+                res.send(error);
+                res.end();
+            }else{
+                res.send(data);
+                res.end();
+            }
+        }
+    );
+
+});
+
+
+
+/*aqui seria como ver el perfil de cada pen*/
+app.use('/verPen/:id',function(req,res){
+    var conexion = mysql.createConnection(credenciales);
+    conexion.query(
+        `
+         SELECT * FROM tbl_proyectos WHERE id = ?;
+        `,
+        [
+          req.params.id
+        ],
+        function(error,data,fields){
+            if(error){
+                res.send(eror);
+                res.end();
+            }else{
+                res.send(data);
+                res.end();
+            }
+        } 
+    );
+});
+
 // Ruta para autenticarse con Facebook (enlace de login)
 app.get('/auth/facebook', passport.authenticate('facebook'));
 
@@ -216,13 +283,85 @@ app.get('/auth/facebook/callback', passport.authenticate('facebook',
 
 
 
-//
+//voy a ver la ruta para compartir proyectos
+
+app.use('/compartido/:id', function(req,res){
+var conexion = mysql.createConnection(credenciales);
+conexion.query(
+    `
+    SELECT B.proyectos_id, C.id, C.id_estado, C.nombre
+            FROM tbl_usuarios A
+            INNER JOIN compartido B
+            ON(A.id=B.id_compartido)
+            INNER JOIN tbl_proyectos C
+            ON(C.id=B.proyectos_id)
+            WHERE A.id= ? OR B.id_comparte= ?;
+     `,
+     [
+       req.params.id,
+       req.params.id
+     ],
+     function(error,data,fields){
+         if(error){
+                res.send(error);
+                res.end();
+            }else{
+                res.send(data);
+                res.end();
+            }
+        }
+    );
+
+});
 
 
+/*voy a listar todos los usuarios*/
+app.get('/listar_usuarios',function(req,res){
+    var conexion = mysql.createConnection(credenciales);
+    conexion.query(
+        `
+        SELECT *
+           FROM tbl_usuarios;
+        `,[],
+        function(error,data,fields){
+            if(error){
+                res.send(error);
+                res.end();
+            }else{
+                res.send(data);
+                res.end();
+            }
+        }
+        );
 
+});
 
+/*COMPARTIR PEN*/
+app.post('/guardar-comparte', function(req,res){
+    var conexion = mysql.createConnection(credenciales);
+     conexion.query(
+       `
+      INSERT INTO compartido
+        ( id_comparte, id_compartido, proyectos_id) 
+        VALUES (?,?,?)       
+       `,
+        [
+            req.body.comparte,
+            req.body.compartido,           
+            req.body.proyecto_id
+        ],
+        function(error, data, fields){
+            if (error){
+                res.send(error);
+                res.end();
+            }else{
+                res.send(data);
+                res.end();
+            }
+        }
+    );
 
-
+});
 
 
 

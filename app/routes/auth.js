@@ -20,7 +20,7 @@ module.exports = function(app,passport) {
     app.get('/index',authController.index);      
    
 
-     app.get('/pen/:username',authController.pen);
+     app.get('/pen/:id',isLoggedIn,authController.pen);
 
 
     app.post('/signin', passport.authenticate('local-signin', 

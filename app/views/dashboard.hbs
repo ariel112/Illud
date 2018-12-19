@@ -107,18 +107,8 @@
                                 <span class="badge badge-pill badge-primary">3</span>
                             </a>
                             <div class="sidebar-submenu">
-                                <ul>
-                                    <li>
-                                        <a href="#">Proyectos desarrollo web
+                                <ul id="bandeja_compartido">
 
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Proyecto ideal</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Proyecto colores</a>
-                                    </li>
                                 </ul>
                             </div>
                         </li>
@@ -315,6 +305,46 @@
 
 
 
+<!-- Modal modal para los pens-->
+<div class="modal fade" id="compartir" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Compartir PEN</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+         <form class="ui form" id="form-compartir"  method="post" >
+             <input type="text" style="display:none;"  value="{{{user.id}}}" name="comparte">
+             <input type="text" style="display:none;" name="proyecto_id" id="lista"/>
+             
+              <div class="field">
+                <label><b>Nombre del usuario:</b></label>
+                <select name="compartido" id="lista_usuarios">
+                    
+                    <option disabled selected >Seleccione un usuario</option>
+                </select>
+                
+              </div>
+           
+                <button class="ui green button"  id="btn-crear-comparte"><b>Crear Pen</b></button>
+           
+              
+            </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+       </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
 
 
 
@@ -333,9 +363,102 @@
         
          
             cargar_carpetas();
-       
-      
+            compartido();
+            
+            $('#compartir').on('show.bs.modal', function(e) {    
+             var id = $(e.relatedTarget).data().id;
+              $(e.currentTarget).find('#lista').val(id);
+                                            });
+           usuarios();
         });
+
+
+function usuarios(){
+
+    $.ajax({
+        url:`listar_usuarios`,
+        method:"GET",
+        dataType:"json",
+        success: function(res){
+          console.log(res);
+
+            for (var i=0;i<res.length;i++){               
+               
+                mostrar_usuarios(res[i].id,res[i].email);
+            }
+        },
+        error: function(error){
+            console.log(error);
+        }
+    });
+}
+
+function mostrar_usuarios(id,nombre){
+    $('#lista_usuarios').append(`
+            <option value="${id}">${nombre}</option> 
+        `);
+}
+
+
+function compartido(){
+    $.ajax({
+        url:`/compartido/${$("#logeado").val()}`,
+        method:"GET",
+        dataType:"json",
+        success: function(res){
+        console.log(res);
+     //   $("#bandeja_compartido").html("");
+        for (var i=0;i<res.length;i++){               
+               
+                mostrar_compartidos(res[i].id,res[i].nombre);
+            }
+
+        },
+        error:function(error){
+        console.log(error);
+        }
+    });
+}
+
+
+function mostrar_compartidos(id,nombre){
+    $('#bandeja_compartido').append(`
+         <li>
+             <a href="/pen/${id}" >
+              ${nombre}
+             </a>
+         </li>
+        
+        `);
+}
+
+
+
+/*----------------------------------- funcion que hace las comparticiones de codigo----------------------------------------*/    
+$("#btn-crear-comparte").click(function(e){
+        e.preventDefault();
+     console.log($("#form-compartir").serialize());       
+   
+   $.ajax({
+        url:"/guardar-comparte",
+        method:"POST",
+        data:$("#form-compartir").serialize(),
+        dataType:"json",
+        success:function(respuesta){
+           $('#bandeja_compartido').html(""); 
+            console.log(respuesta);
+           compartido();
+        },
+        error:function(error){
+            console.error(error);
+        }
+    });
+     CierraPopup3();
+
+     
+});  
+
+
 
 
 function cargar_carpetas(){
@@ -346,11 +469,11 @@ function cargar_carpetas(){
                 dataType:"json",
                 success: function(res){
                     console.log(res);
-           $('#bandeja').html("");
-            for (var i=0;i<res.length;i++){               
-               
-                carpetas(res[i].nombre,res[i].descripcion);
-            }
+                   $('#bandeja').html("");
+                    for (var i=0;i<res.length;i++){               
+                       
+                        carpetas(res[i].nombre,res[i].descripcion);
+                    }
 
                 },
             error:function(error){
@@ -455,17 +578,27 @@ function CierraPopup2() {
 } 
 
 
+function CierraPopup3() {
+    $("#compartir").modal('hide');//ocultamos el modal
+    $('body').removeClass('modal-open');//eliminamos la clase del body para poder hacer scroll
+    $('.modal-backdrop').remove();//eliminamos el backdrop del modal
+} 
+
 /*-----------------------------ruta para acceder al contenido de los pens----------------------------------------*/
-function pen(nombre, fecha){
+function pen(nombre, fecha,id){
 
  $('#bandeja').append(
-    `
+    `  
     
          <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mt-4">                            
                             <div class="ui big special cards">
                               <div class="card card-pink">
-                                 <div class="content color-index">                                              
-                                <img class="ui avatar image" src="publico/img/Programmers-2.jpg">Selvin Morazan
+                                 <div class="content color-index"> 
+
+                                <button type="button"  data-id="${id}" class="btn btn-success ml-2" data-toggle="modal" data-target="#compartir">
+                                   Compartir Pen
+                                 </button> 
+
                               </div>
                                 <div class="blurring dimmable image">
                                   <div class="ui dimmer">
@@ -475,10 +608,13 @@ function pen(nombre, fecha){
                                       </div>                                                        
                                     </div>
                                   </div>
-                                  <img src="publico/img/HTML.jpg">
+                                
+                                    <img src="publico/img/HTML.jpg">
+                                   
+                                  
                                 </div>
                                 <div class="content">
-                                  <a class="header color-index">${nombre}</a>
+                                  <a href="/pen/${id}" class="header color-index">${nombre} ${id}</a>
                                   <div class="meta">
                                     <span class="date color-index">${fecha}</span>
                                   </div>
@@ -493,6 +629,7 @@ function pen(nombre, fecha){
                               </div>                                                                          
                             </div>
                         </div>
+                       
     `
     );
 }
@@ -510,7 +647,7 @@ function cargar_pen(){
            $('#bandeja').html("");
             for (var i=0;i<res.length;i++){               
                
-                pen(res[i].nombre,res[i].created);
+                pen(res[i].nombre,res[i].created,res[i].id);
             }
 
                 },

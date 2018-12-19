@@ -1,6 +1,8 @@
 $(document).ready(function(){
-
+ 
 console.log('iniciado servicios');
+
+   
 
 
 /*Editor de texto para html*/
@@ -67,11 +69,15 @@ run.click(function(event) {
 	var local_js   = localStorage.getItem('js')
   
   */
+
+
+
  	/* almacena el codigo que esta en mis tres cuadros html css js*/
 	   var codigo_html = html.getValue();    
 	   var codigo_css = css.getValue();
 	   var codigo_js = js.getValue();
-	 
+    
+
 
 		/*cargo la informacion desde el navegador localStorage*/	 
 	/*   var codigo_html = local_html;    
